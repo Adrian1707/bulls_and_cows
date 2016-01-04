@@ -15,7 +15,7 @@ class Game
     @player_number = number.to_s.split('').map(&:to_i)
     has_cows?
     has_bulls?
-    result 
+    result
   end
 
   def result
@@ -65,7 +65,7 @@ end
 game = Game.new
 
 print game.comp_choice
-# print game.comp_number
+print game.comp_number
 # game.player_choice(1256)
 # print game.player_number
 # print game.cows
