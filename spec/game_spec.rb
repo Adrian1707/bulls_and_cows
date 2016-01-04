@@ -14,18 +14,25 @@ require 'game'
       expect(game.cows).to eq(0)
     end
 
-    it 'should allow the player to chose and score 3 cows' do
-      allow(game).to receive(:comp_choice).and_return([5,6,7,8])
-      subject.player_choice(8562)
-      p subject.player_number
-      p subject.comp_number
-      expect(subject.cows).to eq(3)
+    it 'should not allow duplicates when randomising' do
+      
     end
 
-    it 'should allow the player to chose and score 2 bulls if they chose right index' do
-      allow(game).to receive(:comp_choice).and_return([5,6,7,8])
-      game.player_choice(5612)
-      expect(game.bulls).to eq(2)
+
+    it 'should allow the player to chose and score 3 cows' do
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      game.player_choice(8562)
+      p game.player_number
+      p game.comp_number
+      p game.cows
+      # p game.has_cows?
+      expect(game.cows).to eq(3)
     end
+    #
+    # it 'should allow the player to chose and score 2 bulls if they chose right index' do
+    #   allow(game).to receive(:comp_choice).and_return([5,6,7,8])
+    #   game.player_choice(5612)
+    #   expect(game.bulls).to eq(2)
+    # end
 
   end
