@@ -15,7 +15,15 @@ class Game
     @player_number = number.to_s.split('').map(&:to_i)
     has_cows?
     has_bulls?
-    "You scored #{@cows} cows and #{@bulls} bulls"
+    result 
+  end
+
+  def result
+    if @bulls < 4
+      return "You scored #{@cows} cows and #{@bulls} bulls"
+    else
+      return "Congratulations! The correct answer was #{@comp_number}"
+    end
   end
 
   def reset_score
@@ -39,8 +47,6 @@ class Game
     end
   end
 
-  # private
-
   def has_cows?
     @player_number.each do |x|
       if @comp_number.include?(x)
@@ -59,7 +65,7 @@ end
 game = Game.new
 
 print game.comp_choice
-print game.comp_number
+# print game.comp_number
 # game.player_choice(1256)
 # print game.player_number
 # print game.cows
