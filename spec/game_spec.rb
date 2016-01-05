@@ -37,8 +37,15 @@ require 'game'
 
     it 'should allow the player to chose and score 3 cows' do
       allow(game).to receive(:comp_number).and_return([5,6,7,8])
-      game.player_choice(8562)    
+      game.player_choice(8562)
       expect(game.cows).to eq(3)
+    end
+
+    it 'should reset the cows count on each turn' do
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      game.player_choice(6723)
+      game.player_choice(7190)
+      expect(game.cows).to eq(1)
     end
     # #
     # it 'should allow the player to chose and score 2 bulls if they chose right index' do
