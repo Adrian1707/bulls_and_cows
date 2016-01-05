@@ -50,5 +50,12 @@ require 'game'
       expect(game.bulls).to eq(2)
     end
 
+    it 'should imcrement the amount of tries after each turn' do
+      game.player_choice(5691)
+      game.player_choice(1278)
+      game.player_choice(1239)
+      expect(game.attempts).to eq(3)
+    end
+
 
   end

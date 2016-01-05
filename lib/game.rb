@@ -1,11 +1,12 @@
 class Game
-  attr_reader :player_number, :comp_number, :cows, :bulls
+  attr_reader :player_number, :comp_number, :cows, :bulls, :attempts
 
   def initialize
     @player_number = []
     @comp_number = []
     @cows  = 0
     @bulls = 0
+    @attempts = 0
   end
 
   def player_choice(number)
@@ -25,7 +26,12 @@ class Game
   def calculate_score
     count_cows
     count_bulls
+    increase_attempts
     result
+  end
+
+  def increase_attempts
+    @attempts += 1
   end
 
   def reset_score
