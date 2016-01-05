@@ -8,13 +8,10 @@ class Game
     @bulls = 0
   end
 
-
   def player_choice(number)
     reset_score
     @player_number = number.to_s.split('').map(&:to_i)
-    count_cows
-    count_bulls
-    result
+    calculate_score
   end
 
   def result
@@ -23,6 +20,12 @@ class Game
     else
       return "Congratulations! The correct answer was #{@number}"
     end
+  end
+
+  def calculate_score
+    count_cows
+    count_bulls
+    result
   end
 
   def reset_score
