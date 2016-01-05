@@ -39,7 +39,6 @@ class Game
         @bulls+=1
       end
     end
-    @bulls
   end
 
   def comp_choice
