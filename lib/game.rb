@@ -43,9 +43,17 @@ class Game
 
   def comp_choice
     until @comp_number.uniq.length == 4
-    @number = (0...4).map { |i| rand((i == 0 ? 1 : 0)..9) }.join.to_i
-    @comp_number = @number.to_s.split('').map(&:to_i)
+    @number = random_4_digit_number
+    @comp_number = number_array
     end
+  end
+
+  def number_array
+    @number.to_s.split('').map(&:to_i)
+  end
+
+  def random_4_digit_number
+    (0...4).map { |i| rand((i == 0 ? 1 : 0)..9) }.join.to_i
   end
 
   def count_cows

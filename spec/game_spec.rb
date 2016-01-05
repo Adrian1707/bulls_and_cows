@@ -47,7 +47,7 @@ require 'game'
       allow(game).to receive(:comp_number).and_return([5,6,7,8])
       game.player_choice(5691)
       game.player_choice(1278)
-      expect(game.cows).to eq(2)
+      expect(game.bulls).to eq(2)
     end
 
 
