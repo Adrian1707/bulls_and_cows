@@ -18,10 +18,9 @@ require 'game'
     #
     # end
 
-    it 'should reset cows score on each go' do
-      game.player_choice(8562)
-      game.reset_score
-      expect(game.cows).to eq(0)
+    it 'should continue game and return scores if number of bulls is less then 4' do
+        allow(game).to receive(:comp_number).and_return([5,6,7,8])
+        expect(game.player_choice(5671)).to eq("You scored #{game.cows} cows and #{game.bulls} bulls")
     end
 
     it 'should congratulate the player if they score 4 bulls' do
@@ -32,7 +31,7 @@ require 'game'
     it 'should reset cows score on each go' do
       game.player_choice(8562)
       game.reset_score
-      expect(game.bulls).to eq(0)
+      expect(game.cows).to eq(0)
     end
 
     it 'should allow the player to chose and score 3 cows' do
@@ -46,6 +45,13 @@ require 'game'
       game.player_choice(6723)
       game.player_choice(7190)
       expect(game.cows).to eq(1)
+    end
+
+    it 'should reset the bulls count on each turn' do
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      game.player_choice(5691)
+      game.player_choice(1278)
+      expect(game.cows).to eq(2)
     end
     # #
     # it 'should allow the player to chose and score 2 bulls if they chose right index' do
