@@ -34,5 +34,16 @@ feature "User can sign in and out" do
       expect(page).not_to have_link('Sign in')
       expect(page).not_to have_link('Sign up')
     end
+
+    it 'user should be directed to the new game page' do
+      visit('/')
+      click_link("Sign out")
+      click_link("Sign in")
+      fill_in('Email', with: 'test@example.com')
+      fill_in('Password', with: 'testtest')
+      click_button("Log in")
+      expect(current_path).to eq("/game")
+  end
+
   end
 end

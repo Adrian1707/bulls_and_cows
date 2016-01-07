@@ -1,4 +1,5 @@
 class Game
+
   attr_reader :player_number, :comp_number, :cows, :bulls, :attempts
 
   def initialize
@@ -15,19 +16,21 @@ class Game
     calculate_score
   end
 
-  def result
-    if @bulls < 4
-      return "You scored #{@cows} cows and #{@bulls} bulls"
-    else
-      return "Congratulations! The correct answer was #{@number}"
+  def comp_choice
+    until @comp_number.uniq.length == 4
+    @number = random_4_digit_number
+    @comp_number = number_array
     end
   end
 
-  def calculate_score
-    count_cows
-    count_bulls
-    increase_attempts
-    result
+  private
+
+  def number_array
+    @number.to_s.split('').map(&:to_i)
+  end
+
+  def random_4_digit_number
+    (0...4).map { |i| rand((i == 0 ? 1 : 0)..9) }.join.to_i
   end
 
   def increase_attempts
@@ -39,29 +42,6 @@ class Game
     @bulls = 0
   end
 
-  def count_bulls
-    @player_number.each_with_index do |x,i|
-      if @player_number[i] == self.comp_number[i]
-        @bulls+=1
-      end
-    end
-  end
-
-  def comp_choice
-    until @comp_number.uniq.length == 4
-    @number = random_4_digit_number
-    @comp_number = number_array
-    end
-  end
-
-  def number_array
-    @number.to_s.split('').map(&:to_i)
-  end
-
-  def random_4_digit_number
-    (0...4).map { |i| rand((i == 0 ? 1 : 0)..9) }.join.to_i
-  end
-
   def count_cows
     @player_number.each do |x|
       if comp_number.include?(x)
@@ -70,7 +50,34 @@ class Game
     end
   end
 
+  def count_bulls
+    @player_number.each_with_index do |x,i|
+      if @player_number[i] == self.comp_number[i]
+        @bulls+=1
+      end
+    end
+  end
+
+  def calculate_score
+    count_cows
+    count_bulls
+    increase_attempts
+    result
+  end
+
+  def result
+    if @bulls < 4
+      return "You scored #{@cows} cows and #{@bulls} bulls"
+    else
+      return "Congratulations! The correct answer was #{@number}"
+    end
+  end
+
 end
+
+
+
+
 
 # num = 1234
 
