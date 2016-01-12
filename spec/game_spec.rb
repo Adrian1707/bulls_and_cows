@@ -51,6 +51,13 @@ require 'game'
       expect(game.attempts).to eq(3)
     end
 
+    it 'should take a record of all player choices' do
+      game.player_choice(5691)
+      game.player_choice(1278)
+      game.player_choice(1239)
+      expect(game.attempts_record).to eq([5691,1278,1239])
+    end
+
 
 
 
