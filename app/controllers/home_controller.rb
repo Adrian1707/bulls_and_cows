@@ -15,15 +15,14 @@ class HomeController < ApplicationController
 
   def play_game
     @result = $result
+    @attempts = $game.attempts
+    @comp_number = $game.comp_number
     render 'game'
   end
 
   def save_number
     $result = $game.player_choice(params[:number]) #don't understand why this @game variable is not responding to method calls
-    @player_number = $game.player_number
-    p @player_number
-    p @result
-    redirect_to '/game'
+    redirect_to '/play_game'
   end
 
 end
