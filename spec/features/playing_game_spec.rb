@@ -15,5 +15,14 @@ require 'rails_helper'
       click_button("Play")
       expect(page).to have_content("You scored 2 cows and 2 bulls")
       end
+
+      it 'should list the players attempts on the page' do
+        fill_in('number', with: '1256')
+        click_button("Play")
+        fill_in('number', with: '6789')
+        click_button("Play")
+        expect(page).to have_content('1256')
+        expect(page).to have_content('6789')
+      end
     end
   end
