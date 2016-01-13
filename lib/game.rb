@@ -1,6 +1,6 @@
 class Game
 
-  attr_reader :player_number, :comp_number, :cows, :bulls, :attempts
+  attr_reader :player_number, :comp_number, :cows, :bulls, :attempts, :score, :bulls_cows_record
 
   def initialize
     @player_number = []
@@ -8,18 +8,21 @@ class Game
     @cows  = 0
     @bulls = 0
     @attempts = 0
+    @score = []
+    @bulls_cows_record = []
   end
 
   def player_choice(number)
     reset_score
-    @player_number = number.to_s.split('').map(&:to_i)
+    @number = number
+    @player_number = number_array
     calculate_score
   end
 
   def comp_choice
-    until @comp_number.uniq.length == 4
-    @number = random_4_digit_number
-    @comp_number = number_array
+    until number_has_4_unique_values
+      @number = generate_random_4_digit_number
+      @comp_number = number_array
     end
   end
 
@@ -29,8 +32,12 @@ class Game
     @number.to_s.split('').map(&:to_i)
   end
 
-  def random_4_digit_number
+  def generate_random_4_digit_number
     (0...4).map { |i| rand((i == 0 ? 1 : 0)..9) }.join.to_i
+  end
+
+  def number_has_4_unique_values
+    @comp_number.uniq.length == 4
   end
 
   def increase_attempts
@@ -62,6 +69,7 @@ class Game
     count_cows
     count_bulls
     increase_attempts
+    @score << ["#{@number}: #{@cows} cows and #{@bulls} bulls"]
     result
   end
 
