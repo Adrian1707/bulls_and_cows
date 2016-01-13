@@ -15,8 +15,9 @@ class HomeController < ApplicationController
 
   def play_game
     @result = $result
+    @score = $game.score
     @attempts = $game.attempts
-    @attempts_record = $game.attempts_record
+    @bulls_cows_track = $game.bulls_cows_record
     @comp_number = $game.comp_number
     render 'game'
   end
