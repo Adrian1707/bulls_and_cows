@@ -15,7 +15,7 @@ class Game
   def player_choice(number)
     reset_score
     @player_number = number.to_s.split('').map(&:to_i)
-    @score << number
+    @number = number
     calculate_score
   end
 
@@ -65,7 +65,7 @@ class Game
     count_cows
     count_bulls
     increase_attempts
-    @score << ["#{@cows} cows", "#{@bulls} bulls"]
+    @score << ["#{@number}: #{@cows} cows and #{@bulls} bulls"]
     result
   end
 
