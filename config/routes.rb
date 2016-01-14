@@ -2,12 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-    root to: "home#index"
+    root "static_pages#home"
 
-    get 'game' => 'home#new_game'
-    get 'play_game' => 'home#play_game'
-    post 'save_number' => 'home#save_number'
-    get 'result' => 'home#result'
+    get 'game' => 'static_pages#game'
+    post 'save_number' => 'static_pages#save_number'
+    get 'result' => 'static_pages#result'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

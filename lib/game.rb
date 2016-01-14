@@ -20,8 +20,13 @@ class Game
   end
 
   def comp_choice
+<<<<<<< HEAD
     until number_has_4_unique_values
       @number = generate_random_4_digit_number
+=======
+    until @comp_number.uniq.length == 4
+      @number = random_4_digit_number
+>>>>>>> experimental
       @comp_number = number_array
     end
   end
@@ -82,26 +87,3 @@ class Game
   end
 
 end
-
-
-
-
-
-# num = 1234
-
-# print num.to_s.split('').map(&:to_i)
-
-# game = Game.new
-#
-# print game.comp_choice
-# print game.comp_number
-# game.player_choice(1256)
-# print game.player_number
-# print game.cows
-# print game.bulls
-#
-# game.player_choice(1234)
-#
-# print game.player_number
-#
-# print game.bulls

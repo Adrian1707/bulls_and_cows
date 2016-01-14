@@ -50,8 +50,4 @@ require 'game'
       game.player_choice(1239)
       expect(game.attempts).to eq(3)
     end
-
-
-
-
   end
