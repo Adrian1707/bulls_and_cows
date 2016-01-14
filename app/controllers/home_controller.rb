@@ -23,7 +23,7 @@ class HomeController < ApplicationController
   end
 
   def save_number
-    $result = $game.player_choice(params[:number]) #don't understand why this @game variable is not responding to method calls
+    $result = $game.player_choice(params[:number])
     redirect_to '/play_game'
   end
 
