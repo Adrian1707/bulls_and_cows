@@ -8,7 +8,8 @@ class HomeController < ApplicationController
   end
 
   def new_game
-    session[:game] = Game.new
+    @game = Game.new
+    session[:game] = YAML::load(@game)
     @comp_choice = session[:game].comp_choice
     @comp_number = session[:game].comp_number
     p session[:game].class
