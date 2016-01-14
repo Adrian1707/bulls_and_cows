@@ -20,13 +20,8 @@ class Game
   end
 
   def comp_choice
-<<<<<<< HEAD
     until number_has_4_unique_values
       @number = generate_random_4_digit_number
-=======
-    until @comp_number.uniq.length == 4
-      @number = random_4_digit_number
->>>>>>> experimental
       @comp_number = number_array
     end
   end
