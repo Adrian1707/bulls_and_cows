@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
     root to: "home#index"
 
-    get 'game' => 'home#new_game'
+    # get 'game' => 'home#new_game'
     get 'play_game' => 'home#play_game'
     post 'save_number' => 'home#save_number'
     get 'result' => 'home#result'

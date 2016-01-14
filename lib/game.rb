@@ -1,6 +1,6 @@
 class Game
 
-  attr_accessor :player_number, :comp_number, :cows, :bulls, :attempts
+  attr_reader :player_number, :comp_number, :cows, :bulls, :attempts
 
   def initialize
     @player_number = []
@@ -17,11 +17,10 @@ class Game
   end
 
   def comp_choice
-    # until @comp_number.uniq.length == 4
-    # @number = random_4_digit_number
-    # @comp_number = number_array
-    # end
-    4567
+    until @comp_number.uniq.length == 4
+      @number = random_4_digit_number
+      @comp_number = number_array
+    end
   end
 
   private
@@ -75,26 +74,3 @@ class Game
   end
 
 end
-
-
-
-
-
-# num = 1234
-
-# print num.to_s.split('').map(&:to_i)
-
-# game = Game.new
-#
-# print game.comp_choice
-# print game.comp_number
-# game.player_choice(1256)
-# print game.player_number
-# print game.cows
-# print game.bulls
-#
-# game.player_choice(1234)
-#
-# print game.player_number
-#
-# print game.bulls
