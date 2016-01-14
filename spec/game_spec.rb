@@ -21,7 +21,7 @@ require 'game'
 
     it 'should congratulate the player if they score 4 bulls' do
       allow(game).to receive(:comp_number).and_return([1,2,3,4])
-      expect(game.player_choice(1234)).to eq("Congratulations! The correct answer was #{@number}")
+      expect(game.player_choice(1234)).to eq("Congratulations! The correct answer was 1234")
     end
 
     it 'should allow the player to chose and score 3 cows' do
@@ -55,7 +55,7 @@ require 'game'
       game.player_choice(5691)
       game.player_choice(1278)
       game.player_choice(1239)
-      expect(game.attempts_record).to eq([5691,1278,1239])
+      expect(game.bulls_cows_record).to eq([5691,1278,1239])
     end
 
 
