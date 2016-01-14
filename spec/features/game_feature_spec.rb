@@ -14,6 +14,7 @@ feature 'Game Features' do
   it 'user can play game' do
     fill_in "number", with: '1234'
     click_button 'Play'
-    expect(current_path).to eq '/play_game'
+    expect(current_path).to eq game_path
+    #another or a different assertion needs to go here, but I don't know what the app is supposed to do once this bug has been fixed so I've left it at this for now
   end
 end

@@ -42,8 +42,7 @@ feature "User can sign in and out" do
       fill_in('Email', with: 'test@example.com')
       fill_in('Password', with: 'testtest')
       click_button("Log in")
-      expect(current_path).to eq("/play_game")
+      expect(current_path).to eq game_path
     end
-
   end
 end

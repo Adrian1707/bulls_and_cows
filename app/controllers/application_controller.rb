@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def after_sign_in_path_for(resource)
-    play_game_path || stored_location_for(resource) || root_url
+    game_path || stored_location_for(resource) || root_url
   end
 
 end

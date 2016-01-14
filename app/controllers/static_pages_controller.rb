@@ -6,14 +6,13 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def play_game
+  def game
     game = Game.new
     @comp_choice = game.comp_choice
     @comp_number = game.comp_number
     session[:game] = game
     @result = session[:result]
     @comp_number = session[:game].comp_number
-    render 'game'
   end
 
   def save_number

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
     root "static_pages#home"
 
-    get 'play_game' => 'static_pages#play_game'
+    get 'game' => 'static_pages#game'
     post 'save_number' => 'static_pages#save_number'
     get 'result' => 'static_pages#result'
   # The priority is based upon order of creation: first created -> highest priority.
