@@ -1,10 +1,9 @@
 require './lib/game'
 
-class HomeController < ApplicationController
+class StaticPagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
-  def index
-    render "index"
+  def home
   end
 
   def play_game
