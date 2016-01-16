@@ -13,13 +13,11 @@ class StaticPagesController < ApplicationController
       @game = Game.new
     end
 
-    @comp_choice = @game.comp_choice
+    @game.choose_comp_number
     @comp_number = @game.comp_number
     @result = YAML::load(session[:result]) if session[:result]
     @attempts = @game.attempts if session[:game]
     @comp_number = @game.comp_number
-    p "COMP NUMBER:"
-    p @comp_number
     session[:game] = @game.to_yaml
   end
 

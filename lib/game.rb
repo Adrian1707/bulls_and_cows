@@ -19,17 +19,17 @@ class Game
     calculate_score
   end
 
-  def comp_choice
+  def choose_comp_number
     until number_has_4_unique_values
       @number = generate_random_4_digit_number
-      @comp_number = number_array
+      @comp_number = number_array(@number)
     end
   end
 
   private
 
-  def number_array
-    @number.to_s.split('').map(&:to_i)
+  def number_array number=@number
+    number.to_s.split('').map(&:to_i)
   end
 
   def generate_random_4_digit_number
