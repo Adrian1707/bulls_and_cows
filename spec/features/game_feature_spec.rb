@@ -11,10 +11,51 @@ feature 'Game Features' do
     click_button('Log in')
   end
 
-  it 'user can play game' do
-    fill_in "number", with: '1234'
-    click_button 'Play'
-    expect(current_path).to eq game_path
-    #another or a different assertion needs to go here, but I don't know what the app is supposed to do once this bug has been fixed so I've left it at this for now
+  context 'when computer chooses 1234' do
+    before(:each){ allow_any_instance_of(Game).to receive(:comp_number).and_return [1, 2, 3, 4] }
+
+    context 'if Player chooses 3421' do
+      before :each do
+        fill_in "number", with: '3421'
+        click_button 'Play'
+      end
+
+      it 'Player scores 4 cows' do
+        expect(current_path).to eq game_path
+        expect(page).to have_content "You scored 4 cows"
+      end
+
+      it 'shows 1 attempt has been made' do
+        expect(page).to have_content '1 attempt'
+      end
+
+      context 'when Player repeats the same numbers' do
+        before :each do
+          fill_in "number", with: '3421'
+          click_button 'Play'
+        end
+
+        it 'shows that 2 attempts have been made' do
+          expect(page).to have_content '2 attempts'
+        end
+      end
+
+      context 'when Player chooses correct numbers' do
+        it 'player is congratulated' do
+          fill_in "number", with: '1234'
+          click_button 'Play'
+          expect(page).to have_content "Congratulations! The correct answer was 1234"
+        end
+      end
+    end
+
+    context 'if Player chooses 1243' do
+      it 'Player scores 4 cows and 2 bulls' do
+        fill_in "number", with: '1243'
+        click_button 'Play'
+        expect(current_path).to eq game_path
+        expect(page).to have_content "You scored 4 cows and 2 bulls"
+      end
+    end
   end
 end
