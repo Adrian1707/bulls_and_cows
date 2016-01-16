@@ -4,7 +4,7 @@ class Game
 
   def initialize
     @player_number = []
-    @comp_number = []
+    @comp_number = choose_comp_number
     @cows  = 0
     @bulls = 0
     @attempts = 0
@@ -19,25 +19,29 @@ class Game
     calculate_score
   end
 
-  def choose_comp_number
-    until number_has_4_unique_values
-      @number = generate_random_4_digit_number
-      @comp_number = number_array(@number)
-    end
-  end
 
   private
+  
+  def choose_comp_number
+    until number_has_4_unique_values(@number_array)
+      @number_array = generate_random_4_digit_number
+    end
+    @number_array
+  end
 
   def number_array number=@number
     number.to_s.split('').map(&:to_i)
   end
 
   def generate_random_4_digit_number
-    (0...4).map { |i| rand((i == 0 ? 1 : 0)..9) }.join.to_i
+    number = (0...4).map { |i| rand((i == 0 ? 1 : 0)..9) }.join.to_i
+    number_array(number)
   end
 
-  def number_has_4_unique_values
-    @comp_number.uniq.length == 4
+  def number_has_4_unique_values(number)
+    if number
+      number.uniq.length == 4
+    end
   end
 
   def increase_attempts
@@ -80,5 +84,4 @@ class Game
       return "Congratulations! The correct answer was #{@number}"
     end
   end
-
 end

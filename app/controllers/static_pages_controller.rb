@@ -7,24 +7,53 @@ class StaticPagesController < ApplicationController
   end
 
   def game
-    if session[:game]
-      @game = YAML::load(session[:game])
+    if a_game_is_already_in_progress?
+      @game     = load_game_instance_from_session_hash
+      @attempts = @game.attempts
+      @result   = load_result_from_session_hash if has_been_at_least_one_attempt?
     else
       @game = Game.new
     end
 
-    @game.choose_comp_number
-    @comp_number = @game.comp_number
-    @result = YAML::load(session[:result]) if session[:result]
-    @attempts = @game.attempts if session[:game]
-    @comp_number = @game.comp_number
-    session[:game] = @game.to_yaml
+    save_game_instance_into_session(@game)
   end
 
   def save_number
-    game = YAML::load(session[:game])
-    session[:result] = game.player_choice(params[:number]).to_yaml
-    session[:game] = game.to_yaml
+    game   = load_game_instance_from_session_hash
+    result = calculate_result(game, params)
+    save_result_into_session(result)
+    save_game_instance_into_session(game)
     redirect_to game_path
+  end
+
+
+  private
+
+  def save_game_instance_into_session game
+    session[:game] = game.to_yaml
+  end
+
+  def save_result_into_session result
+    session[:result] = result
+  end
+
+  def calculate_result(game, params)
+    game.player_choice(params[:number]).to_yaml
+  end
+
+  def has_been_at_least_one_attempt?
+    session[:result]
+  end
+
+  def load_result_from_session_hash
+    YAML::load(session[:result])
+  end
+
+  def a_game_is_already_in_progress?
+    session[:game]
+  end
+
+  def load_game_instance_from_session_hash
+    YAML::load(session[:game])
   end
 end

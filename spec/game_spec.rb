@@ -3,20 +3,20 @@ require 'game'
 
     let(:game) { Game.new }
 
-    it 'should allow the computer to generate a random 4 digit number' do
-      allow(game).to receive(:choose_comp_number).and_return 5678
-      expect(game.choose_comp_number).to eq(5678)
+    it "has a random 4 digit 'comp choice' when initialized" do
+      expect(game.comp_number).to be_a Array
+      expect(game.comp_number.length).to eq 4
     end
 
     it 'should allow the player to chose and score no cows' do
-      allow(game).to receive(:choose_comp_number).and_return 5678
+      allow_any_instance_of(Game).to receive(:choose_comp_number).and_return [5, 6, 7, 8]
       game.player_choice(1234)
       expect(game.cows).to eq(0)
     end
 
     it 'should continue game and return scores if number of bulls is less then 4' do
-        allow(game).to receive(:comp_number).and_return([5,6,7,8])
-        expect(game.player_choice(5671)).to eq("You scored #{game.cows} cows and #{game.bulls} bulls")
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      expect(game.player_choice(5671)).to eq("You scored #{game.cows} cows and #{game.bulls} bulls")
     end
 
     it 'should congratulate the player if they score 4 bulls' do
