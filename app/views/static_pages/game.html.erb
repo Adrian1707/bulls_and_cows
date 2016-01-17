@@ -16,3 +16,11 @@ in the right position.
 
 <%= @result %> <br>
 <%= "You've had #{@attempts} attempts" %>
+
+<ul>
+  <% @score.reverse.each do |x| %>
+  <li>
+  <%= x.join %>
+  </li>
+  <% end %>
+</ul>
