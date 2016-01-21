@@ -47,19 +47,11 @@ feature 'Game Features' do
           expect(page).to have_content "Congratulations! The correct answer was 1234"
         end
 
-        it 'should have a link to a new game on the page' do
-          fill_in "number", with: '1234'
-          click_button 'Play'
-          expect(page).to have_link "Restart game"
-        end
-
-        it 'should restart the game when Restart link is pressed' do
+        it 'should restart the game when player wins' do
           fill_in "number", with: '4321'
           click_button 'Play'
           fill_in "number", with: '1234'
           click_button 'Play'
-          click_link "Restart game"
-          expect(current_path).to eq('/game')
           expect(page).not_to have_content '4321: 4 cows and 0 bulls'
         end
       end

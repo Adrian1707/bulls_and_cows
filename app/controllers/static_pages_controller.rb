@@ -19,19 +19,12 @@ class StaticPagesController < ApplicationController
   end
 
   def save_number
-    game   = load_game_instance_from_session_hash
+    game = load_game_instance_from_session_hash
     result = calculate_result(game, params)
     save_result_into_session(result)
     save_game_instance_into_session(game)
     redirect_to game_path
   end
-
-  def restart
-    @game = load_game_instance_from_session_hash
-    p @game
-    redirect_to action: :game
-  end
-
 
   private
 

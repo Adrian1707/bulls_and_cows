@@ -58,4 +58,18 @@ require 'game'
       expect(game.score).to eq([])
     end
 
+    xit 'should reset computer number when bulls reaches 4' do
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      game.player_choice(5691)
+      game.player_choice(5678)
+      expect(game.comp_number).not_to eq([5,6,7,8])
+    end
+
+    it 'should reset attempts when player wins' do
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      game.player_choice(5691)
+      game.player_choice(5678)
+      expect(game.attempts).to eq(0)
+    end
+
   end
