@@ -26,6 +26,12 @@ class StaticPagesController < ApplicationController
     redirect_to game_path
   end
 
+  def restart
+    @game = load_game_instance_from_session_hash
+    p @game
+    redirect_to action: :game
+  end
+
 
   private
 

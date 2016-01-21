@@ -50,4 +50,12 @@ require 'game'
       game.player_choice(1239)
       expect(game.attempts).to eq(3)
     end
+
+    it 'should reset score when bulls reaches 4' do
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      game.player_choice(5691)
+      game.player_choice(5678)
+      expect(game.score).to eq([])
+    end
+
   end

@@ -21,7 +21,7 @@ class Game
 
 
   private
-  
+
   def choose_comp_number
     until number_has_4_unique_values(@number_array)
       @number_array = generate_random_4_digit_number
@@ -81,6 +81,7 @@ class Game
     if @bulls < 4
       return "You scored #{@cows} cows and #{@bulls} bulls"
     else
+      @score = []
       return "Congratulations! The correct answer was #{@number}"
     end
   end

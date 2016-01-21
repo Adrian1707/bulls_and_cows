@@ -24,3 +24,7 @@ in the right position.
   </li>
   <% end %>
 </ul>
+
+<% if @game.bulls == 4 %>
+  <%= link_to "Restart game", restart_path %>
+<% end %>
