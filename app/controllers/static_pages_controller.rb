@@ -8,15 +8,9 @@ class StaticPagesController < ApplicationController
   end
 
   def game
-    @users = User.all 
+    @users = User.all
     @user = current_user
-    if a_game_is_already_in_progress?
-      @game     = load_game_instance_from_session_hash
-      @attempts = @game.attempts
-      @result   = load_result_from_session_hash if has_been_at_least_one_attempt?
-    else
-      @game = Game.new
-    end
+    load_game
     @score = @game.score
     save_high_score
     @high_score = @user.high_score
