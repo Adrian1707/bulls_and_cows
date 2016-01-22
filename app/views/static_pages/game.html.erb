@@ -9,14 +9,7 @@ For example, if the computer generates '1234' and you guess '4356' you will scor
 but you did not guess the correct positioning. Now if you guess '1238', you score 3 cows and 3 bulls, as you guessed 3 numbers correctly
 in the right position.
 
-<form action='/save_number' method='post'>
-    <input type='text' name='number'>
-    <input type='submit' value='Play' name="Play">
-</form>
-
-<form action="/restart_game" method="post">
-  <input type="submit" name="restart" value="Restart Game">
-</form>
+<%= render "forms" %>
 
 <%= "Your high score is #{@high_score}" %><br>
 
@@ -31,12 +24,4 @@ in the right position.
   <% end %>
 </ul>
 
-<h2>Leadership Board</h2>
-<table>
-<% @users.each do |user| %>
-  <tr>
-    <td><%=user.email%></td>
-    <td><%=user.high_score%> attempts</td>
-  <tr>
-<%end%>
-</table>
+<%= render "leader_board" %>
