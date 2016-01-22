@@ -11,14 +11,12 @@ class StaticPagesController < ApplicationController
     if a_game_is_already_in_progress?
       @game     = load_game_instance_from_session_hash
       @attempts = @game.attempts
-      if @game.bulls == 4 && @attempts < @user.high_score
-         @user.update_attribute(:high_score, @attempts)
-       end
       @result   = load_result_from_session_hash if has_been_at_least_one_attempt?
     else
       @game = Game.new
     end
     @score = @game.score
+    save_high_score
     @high_score = @user.high_score
     save_game_instance_into_session(@game)
   end
@@ -40,6 +38,12 @@ class StaticPagesController < ApplicationController
 
   def save_game_instance_into_session game
     session[:game] = game.to_yaml
+  end
+
+  def save_high_score
+    if @game.bulls == 4 && @attempts < @user.high_score
+       @user.update_attribute(:high_score, @attempts)
+     end
   end
 
   def save_result_into_session result

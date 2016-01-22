@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Game Features' do
-  let(:user){ User.create(email: "testuser@email.com", password: "password", password_confirmation: "password") }
+  let(:user){ User.create(email: "testuser1@email.com", password: "password", password_confirmation: "password") }
 
   before :each do
     visit('/')
@@ -55,20 +55,6 @@ feature 'Game Features' do
         click_button 'Play'
         expect(current_path).to eq game_path
         expect(page).to have_content "You scored 4 cows and 2 bulls"
-      end
-    end
-
-    context 'high score saves into database' do
-      it 'should record a high score of 3 after 3 attempts' do
-          fill_in "number", with: '1243'
-          click_button "Play"
-          fill_in "number", with: '1423'
-          click_button "Play"
-          fill_in "number", with: '1234'
-          click_button "Play"
-          # expect(page).to have_content "You've had 3 attempts"
-          expect(page).to have_content "Congratulations! The correct answer was 1234"
-          expect(user.high_score).to eq(3)
       end
     end
 
