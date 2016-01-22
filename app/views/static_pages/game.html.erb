@@ -1,13 +1,19 @@
-Start new game
+<a class="btn" data-popup-open="popup-1" href="#">Rules of the Game</a>
 
-Here be the rules:
+<div class="popup" data-popup="popup-1">
+    <div class="popup-inner">
+        <h2>Rules of the Game</h2>
+        <p>
+        The computer will play a 4 digit number which you have to guess. If you guess any number contained in the 4 digits, you score a cow.
+        In the event that you score a number that's in the same position then you score a bull. The game wins when you score 4 bulls.<br><br>
 
-The computer will play a 4 digit number which you have to guess. If you guess any number contained in the 4 digits, you score a cow.
-In the event that you score a number that's in the same position then you score a bull. The game wins when you score 4 bulls.
-
-For example, if the computer generates '1234' and you guess '4356' you will score 2 cows and 0 bulls, as 4 and 3 are in the number
-but you did not guess the correct positioning. Now if you guess '1238', you score 3 cows and 3 bulls, as you guessed 3 numbers correctly
-in the right position.
+        For example, if the computer generates '1234' and you guess '4356' you will score 2 cows and 0 bulls, as 4 and 3 are in the number
+        but you did not guess the correct positioning. Now if you guess '1238', you score 3 cows and 3 bulls, as you guessed 3 numbers correctly
+        in the right position.</p>
+        <p><a data-popup-close="popup-1" href="#">Close</a></p>
+        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+    </div>
+</div>
 
 <%= render "forms" %>
 
