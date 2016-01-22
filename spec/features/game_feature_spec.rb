@@ -71,5 +71,18 @@ feature 'Game Features' do
       end
     end
 
+    context 'leadership board' do
+      it 'should display the high scores of all players' do
+        fill_in "number", with: '1243'
+        click_button "Play"
+        fill_in "number", with: '1267'
+        click_button "Play"
+        fill_in "number", with: '1234'
+        click_button "Play"
+        expect(page).to have_content("testuser1@email.com")
+        expect(page).to have_content("3 attempts")
+      end
+    end
+
   end
 end

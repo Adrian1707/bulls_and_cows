@@ -30,3 +30,13 @@ in the right position.
   </li>
   <% end %>
 </ul>
+
+<h2>Leadership Board</h2>
+<table>
+<% @users.each do |user| %>
+  <tr>
+    <td><%=user.email%></td>
+    <td><%=user.high_score%> attempts</td>
+  <tr>
+<%end%>
+</table>

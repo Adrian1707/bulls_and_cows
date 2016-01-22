@@ -1,12 +1,14 @@
 require './lib/game'
 
 class StaticPagesController < ApplicationController
+  include StaticPagesHelper
   skip_before_filter :verify_authenticity_token
 
   def home
   end
 
   def game
+    @users = User.all 
     @user = current_user
     if a_game_is_already_in_progress?
       @game     = load_game_instance_from_session_hash
@@ -38,12 +40,6 @@ class StaticPagesController < ApplicationController
 
   def save_game_instance_into_session game
     session[:game] = game.to_yaml
-  end
-
-  def save_high_score
-    if @game.bulls == 4 && @attempts < @user.high_score
-       @user.update_attribute(:high_score, @attempts)
-     end
   end
 
   def save_result_into_session result
