@@ -45,19 +45,4 @@ require 'game'
       expect(game.bulls).to eq(2)
     end
 
-    xit 'should imcrement the amount of tries after each turn' do
-      game.player_choice(5691)
-      game.player_choice(1278)
-      game.player_choice(1239)
-      expect(user.high_score).to eq(3)
-    end
-
-    xit 'should reset computer number when bulls reaches 4' do
-      allow(game).to receive(:comp_number).and_return([5,6,7,8])
-      game.player_choice(5691)
-      game.player_choice(5678)
-      expect(game.comp_number).not_to eq([5,6,7,8])
-    end
-
-
   end

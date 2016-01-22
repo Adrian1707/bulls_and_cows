@@ -58,15 +58,16 @@ feature 'Game Features' do
       end
     end
 
-    xcontext 'high score saves into database' do
+    context 'high score saves into database' do
       it 'should record a high score of 3 after 3 attempts' do
           fill_in "number", with: '1243'
           click_button "Play"
           fill_in "number", with: '1423'
           click_button "Play"
-          fill_in "number", with: '1254'
+          fill_in "number", with: '1234'
           click_button "Play"
           # expect(page).to have_content "You've had 3 attempts"
+          expect(page).to have_content "Congratulations! The correct answer was 1234"
           expect(user.high_score).to eq(3)
       end
     end

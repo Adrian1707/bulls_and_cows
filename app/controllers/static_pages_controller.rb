@@ -8,17 +8,17 @@ class StaticPagesController < ApplicationController
 
   def game
     @user = current_user
+    Rails.logger.info(@user.errors.messages.inspect)
     if a_game_is_already_in_progress?
       @game     = load_game_instance_from_session_hash
       @attempts = @game.attempts
-      if @game.bulls == 4
+      if @game.bulls == 4 
          @user.update_attribute(:high_score, @attempts)
        end
       @result   = load_result_from_session_hash if has_been_at_least_one_attempt?
     else
       @game = Game.new
     end
-    @high_score = @user.high_score
     @score = @game.score
     save_game_instance_into_session(@game)
   end
