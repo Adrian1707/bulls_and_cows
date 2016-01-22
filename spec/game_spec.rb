@@ -3,6 +3,7 @@ require 'game'
 
     let(:game) { Game.new }
 
+
     it "has a random 4 digit 'comp choice' when initialized" do
       expect(game.comp_number).to be_a Array
       expect(game.comp_number.length).to eq 4
@@ -44,18 +45,11 @@ require 'game'
       expect(game.bulls).to eq(2)
     end
 
-    it 'should imcrement the amount of tries after each turn' do
+    xit 'should imcrement the amount of tries after each turn' do
       game.player_choice(5691)
       game.player_choice(1278)
       game.player_choice(1239)
-      expect(game.attempts).to eq(3)
-    end
-
-    it 'should reset score when bulls reaches 4' do
-      allow(game).to receive(:comp_number).and_return([5,6,7,8])
-      game.player_choice(5691)
-      game.player_choice(5678)
-      expect(game.score).to eq([])
+      expect(user.high_score).to eq(3)
     end
 
     xit 'should reset computer number when bulls reaches 4' do
@@ -65,11 +59,5 @@ require 'game'
       expect(game.comp_number).not_to eq([5,6,7,8])
     end
 
-    it 'should reset attempts when player wins' do
-      allow(game).to receive(:comp_number).and_return([5,6,7,8])
-      game.player_choice(5691)
-      game.player_choice(5678)
-      expect(game.attempts).to eq(0)
-    end
 
   end

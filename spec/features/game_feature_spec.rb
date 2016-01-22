@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Game Features' do
-  let(:user){ User.create(email: "user@email.com", password: "password", password_confirmation: "password") }
+  let(:user){ User.create(email: "testuser@email.com", password: "password", password_confirmation: "password") }
 
   before :each do
     visit('/')
@@ -46,14 +46,6 @@ feature 'Game Features' do
           click_button 'Play'
           expect(page).to have_content "Congratulations! The correct answer was 1234"
         end
-
-        it 'should restart the game when player wins' do
-          fill_in "number", with: '4321'
-          click_button 'Play'
-          fill_in "number", with: '1234'
-          click_button 'Play'
-          expect(page).not_to have_content '4321: 4 cows and 0 bulls'
-        end
       end
     end
 
@@ -65,5 +57,32 @@ feature 'Game Features' do
         expect(page).to have_content "You scored 4 cows and 2 bulls"
       end
     end
+
+    xcontext 'high score saves into database' do
+      it 'should record a high score of 3 after 3 attempts' do
+          fill_in "number", with: '1243'
+          click_button "Play"
+          fill_in "number", with: '1423'
+          click_button "Play"
+          fill_in "number", with: '1254'
+          click_button "Play"
+          # expect(page).to have_content "You've had 3 attempts"
+          expect(user.high_score).to eq(3)
+      end
+    end
+
+    context 'should be allowed to restart the game' do
+      it 'should have a link to restart the game' do
+        expect(page).to have_button "Restart Game"
+      end
+
+      it 'should reset score when player clicks restart' do
+        fill_in "number", with: '1243'
+        click_button "Play"
+        click_button "Restart Game"
+        expect(page).not_to have_content("You've had 1 attempts")
+      end
+    end
+
   end
 end

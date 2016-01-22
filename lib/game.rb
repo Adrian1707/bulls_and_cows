@@ -19,10 +19,16 @@ class Game
     calculate_score
   end
 
+  def restart_game
+    @score = []
+    @attempts = 0
+    @number_array = []
+    @comp_number = choose_comp_number
+  end
+
   private
 
   def choose_comp_number
-    @number_array = []
     until number_has_4_unique_values(@number_array)
       @number_array = generate_random_4_digit_number
     end
@@ -81,9 +87,6 @@ class Game
     if @bulls < 4
       return "You scored #{@cows} cows and #{@bulls} bulls"
     else
-      @score = []
-      @attempts = 0
-      @comp_number = choose_comp_number
       return "Congratulations! The correct answer was #{@number}"
     end
   end
