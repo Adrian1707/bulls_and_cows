@@ -5,7 +5,7 @@
         <h2>Rules of the Game</h2>
         <p>
         The computer will play a 4 digit number which you have to guess. If you guess any number contained in the 4 digits, you score a cow.
-        In the event that you score a number that's in the same position then you score a bull. The game wins when you score 4 bulls.<br><br>
+        In the event that you score a number that's in the same position then you score a bull. The game ends when you score 4 bulls.<br><br>
 
         For example, if the computer generates '1234' and you guess '4356' you will score 2 cows and 0 bulls, as 4 and 3 are in the number
         but you did not guess the correct positioning. Now if you guess '1238', you score 3 cows and 3 bulls, as you guessed 3 numbers correctly
@@ -17,11 +17,17 @@
 
 <%= render "forms" %>
 
-<%= "Your high score is #{@high_score}" %><br>
+<p class="high_score"><%= "Your high score is #{@high_score}" %><br></p>
 
-<%= @result %> <br>
+<p class="result"><%= @result %> <br></p>
+
+<p class="attempts">
+<% if @attempts %>
 <%= "You've had #{@attempts} attempts" %>
+<%end%>
+</p>
 
+<div class="attempt_list">
 <ul>
   <% @score.reverse.each do |x| %>
   <li>
@@ -29,7 +35,8 @@
   </li>
   <% end %>
 </ul>
+</div>
 
 <%= render "leader_board" %>
 
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<p class="sign_out"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></p>

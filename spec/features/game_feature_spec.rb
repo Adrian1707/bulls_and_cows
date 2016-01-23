@@ -59,9 +59,6 @@ feature 'Game Features' do
     end
 
     context 'should be allowed to restart the game' do
-      it 'should have a link to restart the game' do
-        expect(page).to have_button "Restart Game"
-      end
 
       it 'should reset score when player clicks restart' do
         fill_in "number", with: '1243'

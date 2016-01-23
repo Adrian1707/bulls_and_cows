@@ -1,8 +1,12 @@
-<form action='/save_number' method='post'>
-    <input type='text' name='number'>
-    <input type='submit' value='Play' name="Play">
-</form>
+<div class="rain">
+  <div class="border start">
+    <form action='/save_number' method='post' class="guess_form">
+        <input type='text' name='number' autocomplete="off">
+        <input type='submit' value='Play' name="Play" class="form_submit">
+    </form>
+  </div>
+</div>
 
 <form action="/restart_game" method="post">
-  <input type="submit" name="restart" value="Restart Game">
+  <input type="submit" name="restart" value="Restart Game" class="restart_button">
 </form>
