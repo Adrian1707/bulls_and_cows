@@ -1,9 +1,12 @@
 class Game
 
-  attr_reader :player_number, :comp_number, :cows, :bulls, :attempts, :score, :bulls_cows_record
+  attr_reader :player_number, :comp_number, :cows, :bulls, :attempts, :score, :choice_history, :bulls_history, :cows_history
 
   def initialize
     @player_number = []
+    @choice_history = []
+    @bulls_history = []
+    @cows_history = []
     @comp_number = choose_comp_number
     @cows  = 0
     @bulls = 0
@@ -13,6 +16,7 @@ class Game
   end
 
   def player_choice(number)
+    @choice_history << number
     reset_score
     @number = number
     @player_number = number_array
@@ -76,11 +80,23 @@ class Game
   end
 
   def calculate_score
+    count = 0
+    count_cows_and_bulls
+    store_in_history
+    increase_attempts
+    @score << ["#{@cows_history[count]} cows and #{@bulls_history[count]} bulls"]
+    count+=1
+    result
+  end
+
+  def store_in_history
+    @bulls_history << @bulls
+    @cows_history << @cows
+  end
+
+  def count_cows_and_bulls
     count_cows
     count_bulls
-    increase_attempts
-    @score << ["#{@number}: #{@cows} cows and #{@bulls} bulls"]
-    result
   end
 
   def result

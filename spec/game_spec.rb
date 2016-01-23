@@ -45,4 +45,25 @@ require 'game'
       expect(game.bulls).to eq(2)
     end
 
+    it 'should record the history of each player number in a single game' do
+      game.player_choice(5691)
+      game.player_choice(1278)
+      game.player_choice(1276)
+      expect(game.choice_history).to eq([5691,1278,1276])
+    end
+
+    it 'should record the history of bulls for each session' do
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      game.player_choice(5671)
+      game.player_choice(5690)
+      expect(game.bulls_history).to eq([3,2])
+    end
+
+    it 'should record the history of cows for each session' do
+      allow(game).to receive(:comp_number).and_return([5,6,7,8])
+      game.player_choice(5671)
+      game.player_choice(5687)
+      expect(game.cows_history).to eq([3,4])
+    end
+
   end

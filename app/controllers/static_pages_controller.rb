@@ -12,6 +12,10 @@ class StaticPagesController < ApplicationController
     @user = current_user
     load_game
     @score = @game.score
+    @player_number = @game.player_number
+    @choice_history = session[:choice_history]
+    @bulls_history = session[:bulls_history]
+    @cows_history = session[:cows_history]
     save_high_score
     @high_score = @user.high_score
     save_game_instance_into_session(@game)
@@ -20,6 +24,9 @@ class StaticPagesController < ApplicationController
   def save_number
     game = load_game_instance_from_session_hash
     result = calculate_result(game, params)
+    session[:choice_history] = game.choice_history
+    session[:bulls_history] = game.bulls_history
+    session[:cows_history] = game.cows_history
     save_result_into_session(result)
     save_game_instance_into_session(game)
     redirect_to game_path

@@ -27,15 +27,7 @@
 <%end%>
 </p>
 
-<div class="attempt_list">
-<ul>
-  <% @score.reverse.each do |x| %>
-  <li>
-  <%= x.join %>
-  </li>
-  <% end %>
-</ul>
-</div>
+<%= render 'score_table' %>
 
 <%= render "leader_board" %>
 

@@ -1,0 +1,26 @@
+<table class="attempts_table">
+  <div class="attempt_list">
+  <thead>
+    <tr>
+      <th>Player Number</th>
+      <th>Cows</th>
+      <th>Bulls</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @score.each_with_index do |x,i| %>
+      <tr>
+        <td>
+        <%=@choice_history[i] %>
+        </td>
+        <td>
+        <%=@cows_history[i]%>
+        </td>
+        <td>
+        <%=@bulls_history[i]%>
+        </td>
+      </tr>
+      <% end %>
+  </div>
+  </tbody>
+</table>
