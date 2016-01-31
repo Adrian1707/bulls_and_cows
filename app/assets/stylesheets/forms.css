@@ -90,7 +90,7 @@
 				-moz-border-radius: 5px;
 				-webkit-border-radius: 5px;
 			    border-radius: 5px;
-				height: 100%;
+				height: 95%;
 				width: 100%;
 				background: -moz-radial-gradient(50% 46% 90deg,circle closest-corner, #242424, #090909);
 				background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from(#242424), to(#090909));
@@ -103,8 +103,8 @@
 			}
 			.guess_form input{
 				display: block;
-				margin: 5px 10px 10px 15px;
 				width: 85%;
+        margin: 5px 10px 10px 15px;
 				background: #111;
 				-moz-box-shadow: 0px 0px 4px #000 inset;
 				-webkit-box-shadow: 0px 0px 4px #000 inset;
@@ -115,6 +115,7 @@
 				color: #444;
 				font-size: 16px;
 			}
+
 			.guess_form input:focus{
 				outline: 1px solid #555;
 				color: #FFF;
@@ -145,7 +146,8 @@
       input.form_submit:hover{
         display:block;
         width: 90%;
-        color:white;
+        color:black;
+				background-color: white;
       }
       .restart_button{
         height:20%;

@@ -5,3 +5,7 @@ $(function(){
         $(this).append(arr);
     });
 });
+
+$(function(){
+  $("tr:odd").addClass("odd");
+});

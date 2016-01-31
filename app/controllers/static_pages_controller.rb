@@ -11,11 +11,7 @@ class StaticPagesController < ApplicationController
     @users = User.all
     @user = current_user
     load_game
-    @score = @game.score
-    @player_number = @game.player_number
-    @choice_history = session[:choice_history]
-    @bulls_history = session[:bulls_history]
-    @cows_history = session[:cows_history]
+    load_instance_variables
     save_high_score
     @high_score = @user.high_score
     save_game_instance_into_session(@game)
@@ -42,6 +38,14 @@ class StaticPagesController < ApplicationController
   def save_game_instance_into_session game
     session[:game] = game.to_yaml
   end
+
+  def load_instance_variables
+    @score = @game.score
+    @player_number = @game.player_number
+    @choice_history = session[:choice_history]
+    @bulls_history = session[:bulls_history]
+    @cows_history = session[:cows_history]
+  end 
 
   def save_result_into_session result
     session[:result] = result

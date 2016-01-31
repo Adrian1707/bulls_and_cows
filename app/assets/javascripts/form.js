@@ -1,7 +1,6 @@
 $(function(){
 		  var $form_inputs =   $('form input');
 		  var $rainbow_and_border = $('.rain, .border');
-		  /* Used to provide loping animations in fallback mode */
 		  $form_inputs.bind('focus', function(){
 		  	$rainbow_and_border.addClass('end').removeClass('unfocus start');
 		  });
